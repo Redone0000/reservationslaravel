@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\TypeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +21,9 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+
+// ARTIST
+
 Route::get('artist', [ArtistController::class, 'index'])
     ->name('artist.index');
 Route::post('/artist', [ArtistController::class, 'store'])
@@ -34,3 +38,20 @@ Route::put('/artist/{id}', [ArtistController::class, 'update'])
 	->where('id', '[0-9]+')->name('artist.update');
 Route::delete('/artist/{id}', [ArtistController::class, 'destroy'])
 	->where('id', '[0-9]+')->name('artist.delete');
+
+// TYPE
+
+Route::get('/type', [TypeController::class, 'index'])
+    ->name('type.index');
+Route::get('/type/{id}', [TypeController::class, 'show'])
+	->where('id', '[0-9]+')->name('type.show');
+Route::get('type/create', [TypeController::class, 'create'])
+    ->name('type.create');
+Route::post('/type', [TypeController::class, 'store'])
+    ->name('type.store');
+Route::get('/type/edit/{id}', [TypeController::class, 'edit'])
+	->where('id', '[0-9]+')->name('type.edit');
+Route::put('/type/{id}', [TypeController::class, 'update'])
+	->where('id', '[0-9]+')->name('type.update');
+Route::delete('/type/{id}', [TypeController::class, 'destroy'])
+	->where('id', '[0-9]+')->name('type.delete');
