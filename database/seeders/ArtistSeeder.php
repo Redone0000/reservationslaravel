@@ -13,8 +13,10 @@ class ArtistSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
+    {   
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         Artist::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
         
         //Define data
        $artists = [
