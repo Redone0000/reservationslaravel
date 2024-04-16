@@ -25,7 +25,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('type.create');
     }
 
     /**
@@ -33,7 +33,17 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'type' => 'required|max:60',
+        ]);
+
+        $type = new Type();
+
+        $type->type = $validated['type'];
+
+        $type->save();
+
+        return redirect()->route('type.index');
     }
 
     /**
@@ -53,7 +63,11 @@ class TypeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $type = Type::find($id);
+        
+        return view('type.edit',[
+            'type' => $type,
+        ]);
     }
 
     /**
@@ -61,7 +75,19 @@ class TypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'type' => 'required|max:60',
+        ]);
+
+	   //Le formulaire a été validé, nous récupérons l’artiste à modifier
+        $type = Type::find($id);
+
+	   //Mise à jour des données modifiées et sauvegarde dans la base de données
+        $type->update($validated);
+
+        return view('type.show',[
+            'type' => $type,
+        ]);
     }
 
     /**
@@ -69,6 +95,12 @@ class TypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $type = Type::find($id);
+
+        if($type) {
+            $type->delete();
+        }
+
+        return redirect()->route('type.index');
     }
 }
