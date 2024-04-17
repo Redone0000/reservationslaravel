@@ -54,4 +54,13 @@ class Show extends Model
     {
         return $this->belongsToMany(ArtistType::class);
     }
+
+     /**
+     * Get the representations of this show.
+     */
+    public function representations()
+    {
+        return $this->hasMany(Representation::class);
+    }
+
 }
