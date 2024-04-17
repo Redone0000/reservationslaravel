@@ -1,0 +1,37 @@
+@extends('layouts.main')
+
+@section('title', 'Fiche d\'un lieu de spectacle')
+
+@section('content')
+    <article>
+        <h1>{{ $location->designation }}</h1>
+        <address>
+            <p>{{ $location->address }}</p>
+            <p>{{ $location->locality->postal_code }} 
+               {{ $location->locality->locality }}
+            </p>
+
+            @if($location->website)
+            <p><a href="{{ $location->website }}" target="_blank">{{ $location->website }}</a></p>
+            @else
+            <p>Pas de site web</p>
+            @endif
+            
+            @if($location->phone)
+            <p><a href="tel:{{ $location->phone }}">{{ $location->phone }}</a></p>
+            @else
+            <p>Pas de téléphone</p>
+            @endif
+        </address>
+        
+        <h2>Liste des spectacles</h2>
+       
+    </article>
+    <div><a href="{{ route('location.edit' ,$location->id) }}" >Modifier</a></div>
+    <form method="post" action="{{ route('location.delete', $location->id) }}">
+                @csrf
+                @method('DELETE')
+                <button>Supprimer</button>
+            </form>
+    <nav><a href="{{ route('location.index') }}">Retour à l'index</a></nav>
+@endsection
