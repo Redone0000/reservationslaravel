@@ -24,12 +24,11 @@ class DatabaseSeeder extends Seeder
             ShowSeeder::class,
             RepresentationSeeder::class,
             RoleUserSeeder::class,
+            ArtistTypeShowSeeder::class,
+            ReservationSeeder::class,
+            PriceSeeder::class,
+            RepresentationReservationSeeder::class,
         ]);
-        // User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

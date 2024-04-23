@@ -22,4 +22,22 @@ class Location extends Model
     {
         return $this->belongsTo(Locality::class);
     }
+
+    /**
+     * Get the shows for the location.
+     */
+
+     public function shows()
+     {
+         return $this->hasMany(Show::class); 
+     }
+
+    /**
+     * Get the representations for the location.
+     */
+
+     public function representations()
+     {
+         return $this->hasMany(Representation::class);
+     }
 }

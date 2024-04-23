@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Show;
+use App\Models\Price;
+
 
 class ShowController extends Controller
 {
@@ -12,7 +14,10 @@ class ShowController extends Controller
      */
     public function index()
     {
-        $shows = Show::all();
+        // $shows = Show::all();
+
+        $shows = Show::with('representations.representationReservations.price')->get();
+
         
         return view('show.index',[
             'shows' => $shows,
@@ -39,20 +44,15 @@ class ShowController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id) 
     {
+        // $show = Show::with('representations.representationReservations.price')->find($id);
         $show = Show::find($id);
+        $prices = Price::all();
 
-        //Récupérer les artistes du spectacle et les grouper par type
-        $collaborateurs = [];
-
-        foreach($show->artistTypes as $at) {
-            $collaborateurs[$at->type->type][] = $at->artist;
-        }
-           
         return view('show.show',[
             'show' => $show,
-            'collaborateurs' => $collaborateurs,
+            'prices' => $prices,
         ]);
     }
 

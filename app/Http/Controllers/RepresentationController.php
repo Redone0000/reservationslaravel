@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Representation;
+use App\Models\Price;
 use Carbon\Carbon;
 
 class RepresentationController extends Controller
@@ -40,7 +41,7 @@ class RepresentationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $representation = Representation::find($id);
         $date = Carbon::parse($representation->when)->format('d/m/Y');
@@ -75,5 +76,20 @@ class RepresentationController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+     /**
+     * Show the form for booking a representation.
+     */
+    public function book($id)
+    {
+        // $rep = Representation::with('representationReservations.price')->find($id);
+        $rep = Representation::find($id);
+        $prices = Price::all();
+
+        return view('representation.book', [
+            'rep' => $rep,
+            'prices' => $prices,
+        ]);
     }
 }

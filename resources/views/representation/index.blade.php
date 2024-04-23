@@ -17,4 +17,5 @@
     </li>
     @endforeach
     </ul>
+    <a href="http://127.0.0.1:8000/feed" class="btn btn-primary"><i class="fa fa-rss"></i></a>
 @endsection

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Show extends Model
 {
     use HasFactory;
-        /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -20,7 +20,7 @@ class Show extends Model
         'poster_url',
         'location_id',
         'bookable',
-        'price',
+
     ];
 
    /**
@@ -63,4 +63,8 @@ class Show extends Model
         return $this->hasMany(Representation::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
