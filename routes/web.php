@@ -9,6 +9,7 @@ use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\RepresentationController;
+use App\Http\Controllers\ReservationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -105,4 +106,13 @@ Route::get('/representation/{id}', [RepresentationController::class, 'show'])
 
 Route::feeds();
 
-Route::get('/representation/{id}/book', [RepresentationController::class, 'book'])->where('id', '[0-9]+')->name('representation.book');
+// Route::get('/representation/{id}/book', [RepresentationController::class, 'book'])->where('id', '[0-9]+')->name('representation.book');
+Route::get('/representation/{id}/book', [ReservationController::class, 'book'])->where('id', '[0-9]+')->name('representation.book');
+
+
+Route::get('reservations', [ReservationController::class, 'index'])->name('reservations');
+Route::get('reservation/create', [ReservationController::class, 'create'])->name('reservation.create');
+Route::post('/reservations', [ReservationController::class, 'store'])->name('reservation.store');
+Route::get('/reservation/pay', [ReservationController::class, 'pay'])->name('reservation.pay');
+Route::get('/reservation/success', [ReservationController::class, 'success'])->name('reservation.success');
+Route::get('/reservation/cancel', [ReservationController::class, 'cancel'])->name('reservation.cancel');

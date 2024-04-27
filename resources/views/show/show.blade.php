@@ -22,7 +22,7 @@
             @if($show->bookable)
             <h3 class="col-4 mt-2"><em>Réservable</em></h3>
             @else
-            <h3 class="col-4 mt-2"><em>Non réservable</em></h3>
+            <h3 class="col-4 mt-2"><em style="color:red;">Non réservable</em></h3>
             @endif
             </div>
             <div class="row">
@@ -60,7 +60,7 @@
                                     @if($representation->location)
                                         <a href="{{ route('representation.book', $representation->id )}}" class="btn btn-sm btn-primary">Réserver</a>
                                     @else
-                                        <a href="" class="btn btn-sm btn-danger">Réserver</a>
+                                        <a href="" class="btn btn-sm btn-danger disabled">Réserver</a>
 
                                         @endif
                                     <!-- <a href="{{ route('representation.book', $representation->id )}}" class="btn btn-sm btn-primary">Réserver</a>-->
@@ -72,7 +72,7 @@
                 </div>
             @else
                 <div>
-                    <h3 class="text-center">Aucune représentation</h3>
+                    <h3 class="">Aucune représentation</h3>
                 </div>
             @endif
             </div>
@@ -105,7 +105,7 @@
                         @if($type == 'comédien')
                             <strong>Distribution :</strong>
                         @else
-                            <strong>{{ $type }} :</strong>
+                            <strong>{{ ucfirst($type) }} :</strong>
                         @endif
                     </td>
                     <td>

@@ -18,7 +18,7 @@
 <table class="table table-bordered">
     <thead style="background-color: #f0f0f0;">
         <tr>
-            <th colspan="2">Representation séléctionnée</th>
+            <th colspan="2">Détails de la représentation</th>
         </tr>
     </thead>
     <tbody>
@@ -50,7 +50,9 @@
         @endforeach
     </tbody>
 </table>
-
+<div class="row">
+<a href="{{ url()->previous() }}" class="btn btn-secondary ml-3">Revenir en arrière</a>
+</div>
 
 </div>
 <div class="col-5">
@@ -79,7 +81,7 @@
     </div>
     <div class="form-group">
         <div class="">
-            <button type="submit" class="btn btn-primary">Payer</button>
+            <button type="submit" class="btn btn-primary"><span class="ml-3 mr-3">Payer</span></button>
         </div>
     </div>
 </form>
@@ -87,6 +89,8 @@
 
 </div>
 </div>
+
+
 
 </div>
 
@@ -114,7 +118,5 @@
         updateTotal();
     });
 </script>
-
-<nav class="mt-4"><a href="{{ route('show.show', $rep->show->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">Retour</a></nav>
 
 @endsection
